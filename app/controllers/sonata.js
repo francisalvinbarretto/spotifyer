@@ -1,24 +1,30 @@
 var spotify = require('spotify-node-applescript');
-
 var Sonata = function() {
 	return{
 
 		playtrack: function(request, reply) {
-			spotify.playTrack("spotify:track:" + request.params.track);
 
-			reply('done');
+			var track = request.params.track.split(":");
+			var track_type = track[1];
+			
+			if(['user', 'album', 'track'].indexOf(track_type) === -1) {
+				reply({ error: true, message: 'invalid track: ' + track_type});
+			}else {
+				spotify.playTrack(request.params.track);
+				reply({ error: false, message: 'done'});	
+			}
 		},
-		
+
 		play: function(request, reply) {
 			spotify.play();
-			reply('done');
+			reply({ error: false, message: 'done'});
 		},
 
 		playing: function(request, reply) {
 
 			var h = function(req, res) {
 				spotify.getTrack(function(err, track) {
-					reply
+					reply({ error: false, message: track});
 				});
 			};
 
@@ -27,17 +33,18 @@ var Sonata = function() {
 
 		pause: function(request, reply) {
 			spotify.pause();
+			reply({ error: false, message: 'done'});	
 		},
 
 		next: function(request, reply) {
 			spotify.next();
-			
-			reply('done');
+
+			reply({ error: false, message: 'done'});
 		},
 
 		previous: function(request, reply) {
 			spotify.previous();
-			reply('done');
+			reply({ error: false, message: 'done'});
 		}
 	}
 }
