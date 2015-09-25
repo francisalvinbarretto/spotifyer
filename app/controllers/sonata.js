@@ -1,7 +1,6 @@
 var spotify = require('spotify-node-applescript');
 var Sonata = function() {
 	return{
-
 		playtrack: function(request, reply) {
 
 			var track = request.params.track.split(":");
