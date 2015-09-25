@@ -24,4 +24,4 @@ var Player = function() {
 		}
 	}
 }
-module.exports = new Sonata();
+module.exports = new Player();

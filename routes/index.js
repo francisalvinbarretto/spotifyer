@@ -1,6 +1,6 @@
-var sonata_routes = require('./sonata');
 var controllers = require('../app').controllers;
 
-
-
-module.exports = [  new sonata_routes(controllers.sonata) ];
+module.exports = [  
+	new require('./sonata')(controllers.sonata),
+	new require('./player')(controllers.player)
+];
