@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/francisalvinbarretto/spotifyer#readme",
   "dependencies": {
-    "hapi": "^10.0.1"
+    "hapi": "^10.0.1",
+    "spotify-node-applescript": "^0.2.2"
   }
 }
