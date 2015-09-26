@@ -31,11 +31,11 @@ var Player = function() {
 
 		volume: function(request, reply) {
 			var presets = { low: 20, mid: 60, party: 80 };
-			var volumeVal = request.params.volue || 'half';
+			var volumeVal = request.params.volue || 'mid';
 
 			if(Object.keys(presets).indexOf(volumeVal) === -1) {
 				reply({ error: true, 
-					message: 'Invalid volume value. Allowed values - ' + presets.join(', ')
+					message: 'Invalid volume value. Allowed values - ' + Object.keys(presets).join(', ')
 				});
 			}else {
 				spotify.setVolume(presets[volumeVal]);
